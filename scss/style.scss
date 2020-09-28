@@ -1,0 +1,324 @@
+@import "reset";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+// start variables
+
+$black: #303030;
+$white: #FFFFFF;
+$white2: #F5F5F5;
+$red: #C5003D;
+
+// end variables
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+// ------------------------------------------------------------- Burger BTN
+
+.menu-btn {
+    display: inline-block;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    margin-top: 0.7em;
+    margin-right: 1.7em;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.burger-icon {
+    position: relative;
+}
+
+.burger-icon,
+.burger-icon:before,
+.burger-icon:after {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: $black;
+    -webkit-transition-property: background-color, -webkit-transform;
+    -moz-transition-property: background-color, -moz-transform;
+    -o-transition-property: background-color, -o-transform;
+    transition-property: background-color, transform;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+.burger-icon:before,
+.burger-icon:after {
+    position: absolute;
+    content: "";
+}
+
+.burger-icon:before {
+    top: -8px;
+}
+
+.burger-icon:after {
+    top: 8px;
+}
+
+.menu-btn.is-active .burger-icon {
+    background-color: transparent;
+}
+
+.menu-btn.is-active .burger-icon:before {
+    -webkit-transform: translateY(8px) rotate(45deg);
+    -moz-transform: translateY(8px) rotate(45deg);
+    -ms-transform: translateY(8px) rotate(45deg);
+    -o-transform: translateY(8px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-btn.is-active .burger-icon:after {
+    -webkit-transform: translateY(-8px) rotate(-45deg);
+    -moz-transform: translateY(-8px) rotate(-45deg);
+    -ms-transform: translateY(-8px) rotate(-45deg);
+    -o-transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+// ------------------------------------------------------------- Burger BTN
+
+.menu {
+
+    position: sticky;
+    top: 0;
+    z-index: 8999;
+
+
+    &__bar {
+
+        display: flex;
+        align-items: center;
+
+        &__logo {
+            background-color: $white;
+            // box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
+            padding: 1em 0;
+
+            position: relative;
+            z-index: 9999;
+
+
+            a {
+                img {
+                    width: 180px;
+                    margin-left: 1em;
+                }
+
+
+            }
+
+
+
+        }
+
+        &__burgericon {
+
+            position: absolute;
+            z-index: 10999;
+            width: 30px;
+            top: 30px;
+            right: 1.7em;
+            padding: 0;
+            text-align: right;
+
+
+
+            button {
+                vertical-align: top;
+
+            }
+
+
+
+        }
+
+        &__links {
+
+
+            background-color: $white;
+            box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            flex-direction: column;
+            width: 100vw;
+            min-width: 320px;
+            transform: translateY(-190px);
+            position: absolute;
+            top: 80px;
+
+            &__item {
+                color: $black;
+                font-weight: 400;
+                font-size: 1.1em;
+                padding: .5em 0;
+                transition: color .3s ease-in-out;
+
+
+                &--active {
+                    font-weight: 500;
+                    color: $red;
+                }
+
+                &--latest {
+                    padding-bottom: 1em;
+                }
+
+                &:hover {
+                    text-decoration: none;
+                    color: $red;
+                }
+
+            }
+        }
+    }
+
+}
+
+.content {
+    margin-top: 4em;
+    padding: 0 2em;
+    height: 100vh;
+    text-align: center;
+
+
+    h1 {
+        text-transform: uppercase;
+        padding-bottom: 1em;
+        font-size: 2em;
+
+    }
+
+    a {
+        font-weight: 500;
+        color: $red;
+
+    }
+}
+
+// --------------------------------------------------------------------------------------- START calc section
+
+.calc {
+    color: $black;
+    margin-top: 4em;
+    max-width: 668px;
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    label {
+        color: $black;
+        font-size: .9em;
+        padding-top: 1em;
+        padding-bottom: 0;
+    }
+
+    select {
+        color: $black;
+        width: 100%;
+
+    }
+
+    .input__group {
+        display: flex;
+        align-items: center;
+        border: 1px solid lightgray;
+        border-radius: .3em;
+
+        span {
+            color: $black;
+            padding: 0 .5em;
+            border-right: 1px solid lightgray;
+
+        }
+
+        input {
+            border: none;
+            width: 80px;
+            background-color: transparent;
+            padding-left: .5em;
+
+            &:focus {
+                outline: none;       
+            }
+        }
+
+    }
+    .weight__max {
+        color: $black;
+        padding:.5em 1em;
+        font-size: .8em;
+    }
+
+    .btn__red {
+        width: 100%;
+        border: none;
+        border-radius: .5em;
+        text-transform: uppercase;
+        background-color: $red;
+        color: $white;
+        padding: 1em 0;
+    }
+
+    h3 {
+        text-transform: uppercase;
+        padding: 1em 0;
+    }
+
+    .discount {
+        font-weight: 300;
+        span{
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+    }
+
+    .note {
+        font-weight: 300;
+        margin-bottom: 4em;
+        span {
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+    }
+
+    .table {
+        margin-bottom: 4em;
+        td{
+            font-weight: 300;
+        }
+    }
+}
+
+// --------------------------------------------------------------------------------------- END calc section
+
+
+.footer {
+    background-color: $white;
+    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        padding: 2em 0;
+    }
+
+}
+
+
+@media (min-width: 768px) {
+    
+}

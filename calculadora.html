@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>WSL Argentina | Calculador</title>
+</head>
+
+<body>
+
+
+    <div class="menu container-fluid">
+
+        <div class="row">
+            <div class="menu__bar__burgericon col">
+                <button onclick="openNav(estado)" class="menu-btn" id="menuButton">
+                    <span class="burger-icon"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="menu__bar row">
+            <div class="menu__bar__logo col">
+                <a href="index.html"><img src="img/wsl.png" alt=""></a>
+            </div>
+
+            <div class="menu__bar__links col" id="menu__bar__links">
+                <a href="nosotros.html" class="menu__bar__links__item">Nosotros</a>
+                <a href="servicios.html" class="menu__bar__links__item">Servicios</a>
+                <a href="#" class="menu__bar__links__item menu__bar__links__item--active">Caculadora</a>
+                <a href="contacto.html" class="menu__bar__links__item menu__bar__links__item--latest">Contacto</a>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="calc container-fluid">
+
+        <div class="row">
+            <div class="col">
+                <h1>Calculadora de envio</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label for="category">Seleccione categoria del producto</label>
+                <select class="form-control" id="category" name="category">
+                    <option value="0">AFEITADORA </option>
+                    <option value="1">AIRSOFT / PAINTBALL</option>
+                    <option value="3">ARCO </option>
+                    <option value="5">ARTICULOS DE LIBRERIA</option>
+                    <option value="6">ARTICULOS DE PESCA</option>
+                    <option value="7">ARTICULOS DEPORTIVOS</option>
+                    <option value="8">ASPIRADORAS</option>
+                    <option value="9">AURICULARES</option>
+                    <option value="10">BIBERONES / MAMADERAS</option>
+                    <option value="12">BICICLETAS</option>
+                    <option value="13">BIJOUTERIE</option>
+                    <option value="14">BILLETERA</option>
+                    <option value="15">BLU-RAY / JUEGOS PS4</option>
+                    <option value="16">CALZADO</option>
+                    <option value="17">CAMARA DE FOTOS</option>
+                    <option value="20">CARRITO DE BEBE</option>
+                    <option value="21">CD / VINILO MUSICA</option>
+                    <option value="22">CELULARES</option>
+                    <option value="23">CHAMPAGNE</option>
+                    <option value="24">CONSOLA DE SONIDO</option>
+                    <option value="25">CONSOLA DE VDEO JUEGO / PS4</option>
+                    <option value="26">CUCHILLOS</option>
+                    <option value="27">DISCO RIGIDO</option>
+                    <option value="28">DISCO RIGIDO SSD </option>
+                    <option value="29">DRONES</option>
+                    <option value="30">ELECTRODOMESTICOS</option>
+                    <option value="31">FUNDAS DE CELULARES</option>
+                    <option value="32">GORRAS</option>
+                    <option value="33">GPS</option>
+                    <option value="34">GUITARRA / BAJO</option>
+                    <option value="35">HERRAMIENTAS</option>
+                    <option value="36">HERRAMIENTAS ELECTRICAS</option>
+                    <option value="37">IMPRESORAS 3D</option>
+                    <option value="38">INSTRUMENTOS MUSICALES</option>
+                    <option value="39">INSUMOS DE INFORMATICA</option>
+                    <option value="40">JUEGOS DE MESA</option>
+                    <option value="41">JUGUETES</option>
+                    <option value="42">Kindle</option>
+                    <option value="43">LENTES DE SOL</option>
+                    <option value="44">LIBROS</option>
+                    <option value="45">LICORES</option>
+                    <option value="46">LINTERNAS</option>
+                    <option value="47">LUCES LED</option>
+                    <option value="48">MAQUILLAJES / TOCADOR</option>
+                    <option value="49">MEMORIA FLASH</option>
+                    <option value="50">MOCHILAS</option>
+                    <option value="51">MONITORES</option>
+                    <option value="52">NOTEBOOK</option>
+                    <option value="53">NOTEBOOKS USADAS</option>
+                    <option value="54">OLLAS / SARTENES</option>
+                    <option value="55">OTROS</option>
+                    <option value="56">PANELES LED</option>
+                    <option value="57">PANELES SOLARES</option>
+                    <option value="58">PAPEL FOTOGRAFICO</option>
+                    <option value="59">PARLANTES</option>
+                    <option value="60">PERFUMES</option>
+                    <option value="61">PROYECTORES</option>
+                    <option value="62">RELOJES</option>
+                    <option value="63">REPOSERAS</option>
+                    <option value="64">REPUESTOS DE AUTO / MOTOS</option>
+                    <option value="65">REPUESTOS DE CELULARES</option>
+                    <option value="66">REPUESTOS DE MATRICERIA</option>
+                    <option value="67">RON</option>
+                    <option value="68">ROPA</option>
+                    <option value="69">SILLA</option>
+                    <option value="70">SMART WATCH</option>
+                    <option value="71">SOLDADOR</option>
+                    <option value="72">STEREO AUTO</option>
+                    <option value="73">TABLETS</option>
+                    <option value="74">TELEVISOR LED</option>
+                    <option value="75">TERMOS</option>
+                    <option value="76">TOCADISCOS de VINILO</option>
+                    <option value="77">TONER IMPRESORA</option>
+                    <option value="78">Varios</option>
+                    <option value="79">VINOS</option>
+                    <option value="80">VODKA</option>
+                    <option value="81">VOLTIMETROS DIGITALES</option>
+                    <option value="82">WHISKY</option>
+                </select>
+
+            </div>
+            <div class="col-12">
+                <label for="delivery">Seleccione lugar de entrega</label>
+                <select class="form-control" id="delivery" name="delivery">
+                    <option value="0">Entrega en Capital</option>
+                    <option value="1">Entrega Gran BSAS</option>
+                    <option value="2">Entrega en el Interior (A domicilio)</option>
+                    <option value="3">Retiro en Sucursal Microcentro (Gratis)</option>
+                    <option value="4">Retiro en Deposito Miami</option>
+                    <option value="5">Entrega en el interior (A Terminal) (Gratis)</option>
+                </select>
+            </div>
+            <div class="col-6">
+                <label for="valuefob">Ingrese el valor de la compra</label>
+                <div class="input__group">
+                    <span>U$S</span>
+                    <input type="number">
+                </div>
+            </div>
+            <div class="col-6">
+                <label for="weight">Ingrese el peso de la compra</label>
+                <div class="input__group">
+                    <span>KG</span>
+                    <input type="number">
+                </div>
+                <p class="weight__max">(*)no puede superar los X KG.</p>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn__red">agregar item</button>
+            </div>
+            <div class="col-12">
+                <h3>atencion!</h3>
+                <p class="discount">Si superas los 10kg, accedes a un descuento <span>gold</span></p>
+                <p class="discount">Si superas los 25kg, accedes a un descuento <span>platinum</span></p>
+                <p class="note"><span>nota:</span> La calculadora da un precio de referencia para estumar los costos del
+                    envio, nos reservamos el derecho de cambiar los precios o porcentajes de impuesto sin previo aviso.
+                    Si el articulo que queres cotizar no esta en la calculadora comunicate con nosotros y te cotizamos.
+                </p>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+
+                            <th>Concepto</th>
+                            <th>Costo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+
+                            <td>AFEITADORA</td>
+                            <td>U$D 248.58</td>
+                        </tr>
+                        <tr>
+
+                            <td>Valor FOB</td>
+                            <td>U$D 100.00</td>
+                        </tr>
+                        <tr>
+
+                            <td>Peso</td>
+                            <td>9 Kg</td>
+                        </tr>
+                        <tr>
+
+                            <td>Flete</td>
+                            <td>U$D 198.00</td>
+                        </tr>
+
+                        <tr>
+
+                            <td>Impuestos</td>
+                            <td>U$D 50.58</td>
+                        </tr>
+
+                        <tr>
+
+                            <td>Handing</td>
+                            <td>U$D 10.00</td>
+                        </tr>
+
+                        <tr>
+
+                            <td>Entrega en Capital</td>
+                            <td>U$D 10.00</td>
+                        </tr>
+
+                        <tr>
+
+                            <th>TOTAL ENVIO</th>
+                            <th>U$D 268.58</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="footer container-fluid">
+        <div class="row">
+            <div class="col">
+                <p>© Copyright WSL Argentina 2020</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+
+
+    <!-- burger btn animation -->
+    <script src="js/burgerbtn.js"></script>
+
+    <script src="js/program.js"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

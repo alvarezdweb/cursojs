@@ -7,9 +7,13 @@
 $black: #303030;
 $white: #FFFFFF;
 $white2: #F5F5F5;
-$red: #C5003D;
+$red: #d4074f;
 
 // end variables
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -22,8 +26,7 @@ body {
     cursor: pointer;
     background: none;
     border: 0;
-    margin-top: 0.7em;
-    margin-right: 1.7em;
+    margin-right: .7em;
 
     &:focus {
         outline: none;
@@ -88,109 +91,86 @@ body {
 // ------------------------------------------------------------- Burger BTN
 
 .menu {
-
     position: sticky;
     top: 0;
     z-index: 8999;
 
+    &__burgericon {
+        position: absolute;
+        z-index: 9999;
+        top: 20px;
+        right: 0;
+        height: 2.5em;
+        width: 50%;
+        visibility: visible;
+        display: flex;
+        justify-content: flex-end;
+    }
 
     &__bar {
-
+        
         display: flex;
         align-items: center;
+        background-color: $white; 
+
 
         &__logo {
-            background-color: $white;
-            // box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
-            padding: 1em 0;
-
-            position: relative;
-            z-index: 9999;
-
-
-            a {
-                img {
-                    width: 180px;
-                    margin-left: 1em;
-                }
-
+            z-index: 7999;
+            background-color: $white; 
+            img {
+                width: 130px;
+                padding: 1.1em 0;
 
             }
-
-
-
         }
 
-        &__burgericon {
-
-            position: absolute;
-            z-index: 10999;
-            width: 30px;
-            top: 30px;
-            right: 1.7em;
-            padding: 0;
-            text-align: right;
-
-
-
-            button {
-                vertical-align: top;
-
-            }
-
-
-
-        }
-
-        &__links {
-
-
-            background-color: $white;
-            box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
+        &__links{
             display: flex;
-            flex-wrap: wrap;
-            align-items: center;
             flex-direction: column;
-            width: 100vw;
-            min-width: 320px;
-            transform: translateY(-190px);
+            align-items: center;
             position: absolute;
+            z-index: 6999;
             top: 80px;
+            transform: translateY(-160px);
+            box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
+            background-color: $white; 
 
-            &__item {
+
+            
+            
+
+            &__item{
+                padding-top: .8em;
                 color: $black;
-                font-weight: 400;
-                font-size: 1.1em;
-                padding: .5em 0;
-                transition: color .3s ease-in-out;
-
-
-                &--active {
-                    font-weight: 500;
-                    color: $red;
-                }
-
-                &--latest {
-                    padding-bottom: 1em;
-                }
 
                 &:hover {
                     text-decoration: none;
                     color: $red;
                 }
 
+                &--latest{
+                    padding-bottom: .8em;
+                }
+
+                &--active{
+                    color: $red;
+                    font-weight: 500;
+                }
             }
         }
-    }
 
+    }
 }
 
+
+
 .content {
-    margin-top: 4em;
     padding: 0 2em;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-
 
     h1 {
         text-transform: uppercase;
@@ -211,7 +191,6 @@ body {
 .calc {
     color: $black;
     margin-top: 4em;
-    max-width: 668px;
 
     h1 {
         font-size: 1.5em;
@@ -250,14 +229,15 @@ body {
             padding-left: .5em;
 
             &:focus {
-                outline: none;       
+                outline: none;
             }
         }
 
     }
+
     .weight__max {
         color: $black;
-        padding:.5em 1em;
+        padding: .5em 1em;
         font-size: .8em;
     }
 
@@ -278,7 +258,8 @@ body {
 
     .discount {
         font-weight: 300;
-        span{
+
+        span {
             text-transform: uppercase;
             font-weight: 500;
         }
@@ -287,6 +268,7 @@ body {
     .note {
         font-weight: 300;
         margin-bottom: 4em;
+
         span {
             text-transform: uppercase;
             font-weight: 500;
@@ -295,7 +277,8 @@ body {
 
     .table {
         margin-bottom: 4em;
-        td{
+
+        td {
             font-weight: 300;
         }
     }
@@ -320,5 +303,48 @@ body {
 
 
 @media (min-width: 768px) {
+
+    .menu {
+     
     
+    
+        &__burgericon {
+            visibility: hidden;
+            
+        }
+    
+        &__bar {
+            box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
+            padding: 0 2em;
+             
+            &__links{
+                position: relative;
+                top: 0;
+                flex-direction: row;
+                justify-content: flex-end;
+                box-shadow: none;
+              
+                
+                
+    
+                &__item{
+                    padding-top: 0;
+                    padding-left: 1.5em;
+    
+                    &--latest{
+                        padding-bottom: 0;
+                        padding-right: 1em;
+                    }
+                }
+            }
+    
+        }
+    }
+
+    .calc {
+        padding: 0 3em;
+
+    }
+    
+
 }

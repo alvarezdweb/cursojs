@@ -146,7 +146,8 @@ body {
     color: #d4074f; }
 
 .calculator {
-  min-height: 80vh; }
+  min-height: 80vh;
+  margin: 4em 0; }
   .calculator__login {
     text-align: right;
     padding-bottom: 2em; }

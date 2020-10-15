@@ -104,7 +104,7 @@ const handleSubmit = (e) => {
                 uPrice: quote() / parseInt(productQuantityAerial.value)
             }
             articulos.push(articulo);
-            reset();
+          
         }
     }
 
@@ -168,9 +168,10 @@ const handleSubmit = (e) => {
                 uPrice: quote() / parseInt(productQuantityMaritime.value)
             }
             articulos.push(articulo);
-            reset();
+            
         }
     }
+    reset();
     renderFunction();
 
 
@@ -186,7 +187,7 @@ const handleSubmit = (e) => {
 // --------------------------- start renderFunction ---------------------------
 
 const renderFunction = () => {
-    if (articulos != null) {
+
         localStorage.setItem('art', JSON.stringify(articulos));
         table.innerHTML = '';
         articulos.forEach((art, index) => {
@@ -230,7 +231,6 @@ const renderFunction = () => {
             </tbody>
             `
         })
-    }
 }
 
 // --------------------------- end renderFunction ---------------------------
@@ -295,8 +295,12 @@ const remove = (index) => {
 }
 
 const callStorage = () => {
-    articulos = JSON.parse(localStorage.getItem('art'));
-    renderFunction();
+    if(JSON.parse(localStorage.getItem('art')).length>0){
+        articulos = JSON.parse(localStorage.getItem('art'));
+        renderFunction();
+    }else{
+        console.log('vacio');
+    }
 }
 
 // --------------------------- end other FUNCTIONS ---------------------------

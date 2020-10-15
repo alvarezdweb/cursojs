@@ -5,6 +5,12 @@ let productAddBtn = document.querySelector('#product__add');
 let aerialForm = document.querySelector('#aerialForm');
 let maritimeForm = document.querySelector('#maritimeForm');
 let table = document.querySelector('#table');
+let userName = document.querySelector('#modal__user');
+let userPassword = document.querySelector('#modal__pass');
+let modalLogin = document.querySelector('#modal__login');
+let loginBtn = document.querySelector('#loginBtn');
+let logoutBtn = document.querySelector('#logoutBtn');
+let welcome = document.querySelector('#welcome');
 
 // AERIAL
 let productNameAerial = document.querySelector('#product__name__aerial');
@@ -27,28 +33,59 @@ let articulos = [];
 
 
 
+
+// --------------------------- start login FUNCTION ---------------------------
+
+const login = (e) => {
+    e.preventDefault();
+    console.log(e.target.id);
+
+    if(e.target.id=='modal__login'){
+
+      localStorage.setItem('user', userName.value);
+    localStorage.setItem('password', userPassword.value);
+
+    }
+    if(e.target.id=='logoutBtn'){
+
+        localStorage.removeItem('user');
+        checkUser();    
+    }
+    location.reload();
+    
+}
+
+// --------------------------- end login FUNCTION ---------------------------
+
+
+
+
 // --------------------------- start shipping type FUNCTION ---------------------------
 
 
 const shippingType = () => {
-    reset();
+    console.log(ship.value);
 
     if (ship.value == 'aerial') {
         aerialForm.classList.remove('dNone');
         maritimeForm.classList.add('dNone');
         productAddBtn.classList.remove('dNone');
+
     }
 
     if (ship.value == 'maritime') {
         aerialForm.classList.add('dNone');
         maritimeForm.classList.remove('dNone');
         productAddBtn.classList.remove('dNone');
+
     }
 
     if (ship.value != 'maritime' && ship.value != 'aerial') {
         aerialForm.classList.add('dNone');
         maritimeForm.classList.add('dNone');
-        productAddBtn.classList.add('dNone');   
+        productAddBtn.classList.add('dNone');
+
+
     }
 }
 
@@ -60,39 +97,9 @@ const shippingType = () => {
 
 const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (ship.value == 'aerial') {
-        let validate = 0;
-
-        if (productNameAerial.value == '') {
-            productNameAerial.classList.add('is-invalid');
-        } else {
-            productNameAerial.classList.remove('is-invalid');
-            productNameAerial.classList.add('is-valid');
-            validate++;
-        }
-        if (productWeightAerial.value == '' || productWeightAerial.value <= 0) {
-            productWeightAerial.classList.add('is-invalid');
-        } else {
-            productWeightAerial.classList.remove('is-invalid');
-            productWeightAerial.classList.add('is-valid');
-            validate++;
-        }
-        if (productQuantityAerial.value == '' || productQuantityAerial.value <= 0) {
-            productQuantityAerial.classList.add('is-invalid');
-        } else {
-            productQuantityAerial.classList.remove('is-invalid');
-            productQuantityAerial.classList.add('is-valid');
-            validate++;
-        }
-        if (productPriceAerial.value == '' || productPriceAerial.value <= 0) {
-            productPriceAerial.classList.add('is-invalid');
-        } else {
-            productPriceAerial.classList.remove('is-invalid');
-            productPriceAerial.classList.add('is-valid');
-            validate++;
-        }
-        if (validate == 4) {
+     
+    if (ship.value == 'aerial') {  
+         
             let articulo = {
                 type: 'Aereo',
                 shippingTime: '15 Dias',
@@ -105,71 +112,26 @@ const handleSubmit = (e) => {
             }
             articulos.push(articulo);
             reset();
-        }
     }
 
     if (ship.value == 'maritime') {
-        let validate = 0;
 
-        if (productNameMaritime.value == '') {
-            productNameMaritime.classList.add('is-invalid');
-        } else {
-            productNameMaritime.classList.remove('is-invalid');
-            productNameMaritime.classList.add('is-valid');
-            validate++;
+        let articulo = {
+            type: 'Maritimo',
+            shippingTime: '60 Dias',
+            name: productNameMaritime.value,
+            width: productWidthMaritime.value,
+            height: productHeightMaritime.value,
+            long: productLongMaritime.value,
+            quantity: productQuantityMaritime.value,
+            price: productPriceMaritime.value,
+            quotation: quote(),
+            uPrice: quote() / parseInt(productQuantityMaritime.value)
         }
-        if (productWidthMaritime.value == '' || productWidthMaritime.value <= 0) {
-            productWidthMaritime.classList.add('is-invalid');
-        } else {
-            productWidthMaritime.classList.remove('is-invalid');
-            productWidthMaritime.classList.add('is-valid');
-            validate++;
-        }
-        if (productHeightMaritime.value == '' || productHeightMaritime.value <= 0) {
-            productHeightMaritime.classList.add('is-invalid');
-        } else {
-            productHeightMaritime.classList.remove('is-invalid');
-            productHeightMaritime.classList.add('is-valid');
-            validate++;
-        }
-        if (productLongMaritime.value == '' || productLongMaritime.value <= 0) {
-            productLongMaritime.classList.add('is-invalid');
 
-        } else {
-            productLongMaritime.classList.remove('is-invalid');
-            productLongMaritime.classList.add('is-valid');
-            validate++;
-        }
-        if (productQuantityMaritime.value == '' || productQuantityMaritime.value <= 0) {
-            productQuantityMaritime.classList.add('is-invalid');
-        } else {
-            productQuantityMaritime.classList.remove('is-invalid');
-            productQuantityMaritime.classList.add('is-valid');
-            validate++;
-        }
-        if (productPriceMaritime.value == '' || productPriceMaritime.value <= 0) {
-            productPriceMaritime.classList.add('is-invalid');
-        } else {
-            productPriceMaritime.classList.remove('is-invalid');
-            productPriceMaritime.classList.add('is-valid');
-            validate++;
-        }
-        if (validate == 6) {
-            let articulo = {
-                type: 'Maritimo',
-                shippingTime: '60 Dias',
-                name: productNameMaritime.value,
-                width: parseFloat(productWidthMaritime.value),
-                height: parseFloat(productHeightMaritime.value),
-                long: parseFloat(productLongMaritime.value),
-                quantity: parseInt(productQuantityMaritime.value),
-                price: parseFloat(productPriceMaritime.value),
-                quotation: quote(),
-                uPrice: quote() / parseInt(productQuantityMaritime.value)
-            }
-            articulos.push(articulo);
-            reset();
-        }
+        articulos.push(articulo);
+        reset();
+
     }
     renderFunction();
 
@@ -180,14 +142,17 @@ const handleSubmit = (e) => {
 
 
 
+
 // --------------------------- start renderFunction ---------------------------
 
 const renderFunction = () => {
-
-    localStorage.setItem('art', JSON.stringify(articulos));
+  
+    localStorage.setItem('art',JSON.stringify(articulos));
     table.innerHTML = '';
     articulos.forEach((art, index) => {
+
         return table.innerHTML += `
+
             <thead>
                 <tr class="table-active">
                     <th>${art.name}</th>
@@ -205,40 +170,51 @@ const renderFunction = () => {
             <tbody>
             <tr>
                 <td>${'Precio FOB:'}</td>
-                <td class="text-right">${'USD '+art.price.toFixed(2)}</td>
+                <td class="text-right">${'USD '+art.price}</td>
+
             </tr>
+
             <tr>
             <td>${'Tipo de envio:'}</td>
             <td class="text-right">${art.type+' - '+art.shippingTime}</td>
             </tr>
+
             <tr>
                 <td>${'Cantidad: '}</td>
                 <td class="text-right">${art.quantity+' Unidades'}</td>
             </tr>
+
             <tr>
                 <td>${'Precio Unitario Final:'}</td>
-                <td class="text-right">${'USD '+art.uPrice.toFixed(2)}</td>
+                <td class="text-right">${'U$D'+art.uPrice}</td>
             </tr>
+
             <tr>
                 <th>${'Precio Total Final:'}</th>
-                <th class="text-right">${'USD '+art.quotation.toFixed(2)}</th>
+                <th class="text-right">${'U$D'+art.quotation}</th>
 
             </tr>
             </tbody>
+
+    
             `
     })
+
 }
 
 // --------------------------- end renderFunction ---------------------------
 
 
 
+
 // --------------------------- start other FUNCTIONS ---------------------------
+
 
 const quote = () => {
     if (ship.value == 'aerial') {
         let kg = parseFloat(productWeightAerial.value) * 60;
         let tax = parseFloat(productPriceAerial.value * 1.04);
+
         return kg + tax;
     }
     if (ship.value == 'maritime') {
@@ -260,39 +236,36 @@ const reset = () => {
     productQuantityMaritime.value = '';
     productPriceMaritime.value = '';
 
-    productNameAerial.classList.remove('is-valid');
-    productWeightAerial.classList.remove('is-valid');
-    productQuantityAerial.classList.remove('is-valid');
-    productPriceAerial.classList.remove('is-valid');
-
-    productNameMaritime.classList.remove('is-valid');
-    productHeightMaritime.classList.remove('is-valid');
-    productWidthMaritime.classList.remove('is-valid');
-    productLongMaritime.classList.remove('is-valid');
-    productQuantityMaritime.classList.remove('is-valid');
-    productPriceMaritime.classList.remove('is-valid');
-
-    productNameAerial.classList.remove('is-invalid');
-    productWeightAerial.classList.remove('is-invalid');
-    productQuantityAerial.classList.remove('is-invalid');
-    productPriceAerial.classList.remove('is-invalid');
-
-    productNameMaritime.classList.remove('is-invalid');
-    productHeightMaritime.classList.remove('is-invalid');
-    productWidthMaritime.classList.remove('is-invalid');
-    productLongMaritime.classList.remove('is-invalid');
-    productQuantityMaritime.classList.remove('is-invalid');
-    productPriceMaritime.classList.remove('is-invalid');
 }
 
 const remove = (index) => {
     articulos.splice(index, 1);
     renderFunction();
+
+}
+
+const validateForm = () => {
+
+}
+
+const checkUser = () => {
+    if(localStorage.getItem('user')){
+        welcome.innerHTML= 'Bienvenido, '+localStorage.getItem('user').toUpperCase();
+        loginBtn.classList.add('dNone');
+        logoutBtn.classList.remove('dNone');    
+    
+    }else{
+        loginBtn.classList.remove('dNone');
+        logoutBtn.classList.add('dNone');    
+
+
+    }
 }
 
 const callStorage = () => {
-    articulos = JSON.parse(localStorage.getItem('art'));
-    renderFunction();
+   articulos=JSON.parse(localStorage.getItem('art'));
+   renderFunction();
+
 }
 
 // --------------------------- end other FUNCTIONS ---------------------------
@@ -300,8 +273,9 @@ const callStorage = () => {
 
 
 // --------------------------- start EVENTS ---------------------------
-
-$(document).ready(callStorage);
+$(document).ready(callStorage); 
+modalLogin.addEventListener('click', login);
+logoutBtn.addEventListener('click',login);
 productAddBtn.addEventListener('click', handleSubmit);
 ship.addEventListener('change', shippingType);
 

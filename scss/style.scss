@@ -23,6 +23,10 @@ body {
 
 // ------------------------------------------------------------- D-NONE
 
+.border-grey{
+    border: 1px solid lightgray !important;
+}
+
 .dNone {
     display: none !important;
 }
@@ -199,9 +203,13 @@ body {
 
     h1 {
         text-transform: uppercase;
-        padding-bottom: 1em;
+        padding-bottom: .5em;
         font-size: 2em;
 
+    }
+
+    h2 {
+        padding-bottom: 1em;
     }
 
     a {
@@ -215,7 +223,25 @@ body {
 
 .calculator {
     min-height: 80vh;
-    padding-top: 4em;
+
+    &__login {
+        text-align: right;
+        padding-bottom: 2em;
+        
+        #loginBtn,
+        #logoutBtn {        
+            cursor: pointer;
+            font-weight: 500;
+            color: $black;
+          
+            
+            
+            &:hover {
+                color: $red2;    
+                text-decoration: none;
+            }
+        }
+    }
     &__title {
 
         h1 {
@@ -303,6 +329,46 @@ body {
 // --------------------------------------------------------------------------------------- END calc section
 
 
+// --------------------------------------------------------------------------------------- START modal
+
+.modal {
+    &-body{
+
+        &-form{
+            display: flex;
+            flex-direction: column;
+
+            &-label {
+                padding:.5em 0;
+                margin: 0;
+            }
+            &-submit {
+                margin-top: 1em;
+                padding: .5em 0;
+                color: $white;
+                background-color: $red;
+                border: none;
+                border-radius: .3em;
+    
+                width: 100%;
+                text-transform: uppercase;
+    
+                &:hover {
+                    background-color: $red2;
+                }
+    
+                &:focus {
+                    border: none;
+                    outline: none;
+                }   
+            }
+        }
+
+    }
+}
+
+// --------------------------------------------------------------------------------------- END modal
+
 .footer {
     background-color: $white;
     box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
@@ -358,6 +424,7 @@ body {
     }
 
     .calculator {
+        padding-top: 2em;   
         max-width: 800px;
 
         &__form{

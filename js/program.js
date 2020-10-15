@@ -291,10 +291,10 @@ const remove = (index) => {
 }
 
 const callStorage = () => {
-    if(!localStorage.getItem('art')){
+    if(localStorage.getItem('art')){
         articulos = JSON.parse(localStorage.getItem('art'));
-    renderFunction();
     }
+    renderFunction();
     
 }
 

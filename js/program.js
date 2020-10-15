@@ -105,7 +105,6 @@ const handleSubmit = (e) => {
             }
             articulos.push(articulo);
             reset();
-            renderFunction();
         }
     }
 
@@ -170,9 +169,11 @@ const handleSubmit = (e) => {
             }
             articulos.push(articulo);
             reset();
-            renderFunction();
         }
     }
+    renderFunction();
+   
+
     
 
 
@@ -185,7 +186,7 @@ const handleSubmit = (e) => {
 // --------------------------- start renderFunction ---------------------------
 
 const renderFunction = () => {
-
+  
     localStorage.setItem('art', JSON.stringify(articulos));
     table.innerHTML = '';
     articulos.forEach((art, index) => {
@@ -293,12 +294,8 @@ const remove = (index) => {
 }
 
 const callStorage = () => {
-    if(localStorage.getItem('art')){
-        articulos = JSON.parse(localStorage.getItem('art'));
-        renderFunction();
-    }
-    
-    
+    articulos=JSON.parse(localStorage.getItem('art'));
+    renderFunction();
 }
 
 // --------------------------- end other FUNCTIONS ---------------------------

@@ -48,7 +48,7 @@ const shippingType = () => {
     if (ship.value != 'maritime' && ship.value != 'aerial') {
         aerialForm.classList.add('dNone');
         maritimeForm.classList.add('dNone');
-        productAddBtn.classList.add('dNone');   
+        productAddBtn.classList.add('dNone');
     }
 }
 
@@ -172,9 +172,9 @@ const handleSubmit = (e) => {
         }
     }
     renderFunction();
-   
 
-    
+
+
 
 
 }
@@ -186,11 +186,11 @@ const handleSubmit = (e) => {
 // --------------------------- start renderFunction ---------------------------
 
 const renderFunction = () => {
-  
-    localStorage.setItem('art', JSON.stringify(articulos));
-    table.innerHTML = '';
-    articulos.forEach((art, index) => {
-        return table.innerHTML += `
+    if (articulos != null) {
+        localStorage.setItem('art', JSON.stringify(articulos));
+        table.innerHTML = '';
+        articulos.forEach((art, index) => {
+            return table.innerHTML += `
             <thead>
                 <tr class="table-active">
                     <th>${art.name}</th>
@@ -229,7 +229,8 @@ const renderFunction = () => {
             </tr>
             </tbody>
             `
-    })
+        })
+    }
 }
 
 // --------------------------- end renderFunction ---------------------------
@@ -294,7 +295,7 @@ const remove = (index) => {
 }
 
 const callStorage = () => {
-    articulos=JSON.parse(localStorage.getItem('art'));
+    articulos = JSON.parse(localStorage.getItem('art'));
     renderFunction();
 }
 

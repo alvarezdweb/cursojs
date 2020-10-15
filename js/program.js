@@ -105,6 +105,7 @@ const handleSubmit = (e) => {
             }
             articulos.push(articulo);
             reset();
+            renderFunction();
         }
     }
 
@@ -169,9 +170,10 @@ const handleSubmit = (e) => {
             }
             articulos.push(articulo);
             reset();
+            renderFunction();
         }
     }
-    renderFunction();
+    
 
 
 }

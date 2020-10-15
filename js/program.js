@@ -23,6 +23,9 @@ let productPriceMaritime = document.querySelector('#product__price__maritime');
 //ARRAYS
 let articulos = [];
 
+
+
+
 // --------------------------- end VARIABLES ---------------------------
 
 
@@ -104,7 +107,8 @@ const handleSubmit = (e) => {
                 uPrice: quote() / parseInt(productQuantityAerial.value)
             }
             articulos.push(articulo);
-          
+            reset();
+
         }
     }
 
@@ -168,10 +172,10 @@ const handleSubmit = (e) => {
                 uPrice: quote() / parseInt(productQuantityMaritime.value)
             }
             articulos.push(articulo);
-            
+            reset();
         }
     }
-    reset();
+    
     renderFunction();
 
 
@@ -295,11 +299,11 @@ const remove = (index) => {
 }
 
 const callStorage = () => {
-    if(JSON.parse(localStorage.getItem('art')).length>0){
+    if(!localStorage.getItem('art')==''){
         articulos = JSON.parse(localStorage.getItem('art'));
         renderFunction();
     }else{
-        console.log('vacio');
+        localStorage.setItem('art','');
     }
 }
 

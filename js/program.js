@@ -1,24 +1,27 @@
 // --------------------------- start VARIABLES ---------------------------
 
-let ship = document.querySelector('#shipping__type');
-let productAddBtn = document.querySelector('#product__add');
-let aerialForm = document.querySelector('#aerialForm');
-let maritimeForm = document.querySelector('#maritimeForm');
-let table = document.querySelector('#table');
+
+let ship = $('#shipping__type');
+let productAddBtn = $('#product__add');
+let aerialForm = $('#aerialForm');
+let maritimeForm = $('#maritimeForm');
+let table = $('#table');
 
 // AERIAL
-let productNameAerial = document.querySelector('#product__name__aerial');
-let productWeightAerial = document.querySelector('#product__weight__aerial');
-let productQuantityAerial = document.querySelector('#product__quantity__aerial');
-let productPriceAerial = document.querySelector('#product__price__aerial');
+
+let productNameAerial = $('#product__name__aerial');
+let productWeightAerial = $('#product__weight__aerial');
+let productQuantityAerial = $('#product__quantity__aerial');
+let productPriceAerial = $('#product__price__aerial');
 
 //MARITIME
-let productNameMaritime = document.querySelector('#product__name__maritime');
-let productWidthMaritime = document.querySelector('#product__width__maritime');
-let productHeightMaritime = document.querySelector('#product__height__maritime');
-let productLongMaritime = document.querySelector('#product__long__maritime');
-let productQuantityMaritime = document.querySelector('#product__quantity__maritime');
-let productPriceMaritime = document.querySelector('#product__price__maritime');
+
+let productNameMaritime = $('#product__name__maritime');
+let productWidthMaritime = $('#product__width__maritime');
+let productHeightMaritime = $('#product__height__maritime');
+let productLongMaritime = $('#product__long__maritime');
+let productQuantityMaritime = $('#product__quantity__maritime');
+let productPriceMaritime = $('#product__price__maritime');
 
 //ARRAYS
 let articulos = [];
@@ -36,22 +39,30 @@ let articulos = [];
 const shippingType = () => {
     reset();
 
-    if (ship.value == 'aerial') {
-        aerialForm.classList.remove('dNone');
-        maritimeForm.classList.add('dNone');
-        productAddBtn.classList.remove('dNone');
+    if (ship.val() == 'aerial') {
+        productAddBtn.slideUp(300);
+        maritimeForm.slideUp(300,
+            function () {
+                aerialForm.slideDown(300)
+            });
+        productAddBtn.slideDown(300);
     }
 
-    if (ship.value == 'maritime') {
-        aerialForm.classList.add('dNone');
-        maritimeForm.classList.remove('dNone');
-        productAddBtn.classList.remove('dNone');
+    if (ship.val() == 'maritime') {
+        productAddBtn.slideUp(300);
+        aerialForm.slideUp(300,
+            function () {
+                maritimeForm.slideDown(300);
+            });
+        productAddBtn.slideDown(300);
     }
 
-    if (ship.value != 'maritime' && ship.value != 'aerial') {
-        aerialForm.classList.add('dNone');
-        maritimeForm.classList.add('dNone');
-        productAddBtn.classList.add('dNone');
+    if (ship.val() != 'maritime' && ship.val() != 'aerial') {
+
+        maritimeForm.slideUp(300);
+        aerialForm.slideUp(300);
+        productAddBtn.slideUp(300);
+
     }
 }
 
@@ -64,124 +75,71 @@ const shippingType = () => {
 const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (ship.value == 'aerial') {
-        let validate = 0;
 
-        if (productNameAerial.value == '') {
-            productNameAerial.classList.add('is-invalid');
-        } else {
-            productNameAerial.classList.remove('is-invalid');
-            productNameAerial.classList.add('is-valid');
-            validate++;
+    let validateAerial = $('.validateAerial');
+    let validateMaritime = $('.validateMaritime');
+
+
+
+
+    if (ship.val() == 'aerial') {
+
+        for (let i = 0; i < validateAerial.length; i++) {
+            if (validateAerial[i].value == '' || validateAerial[i].value <= 0) {
+                validateAerial[i].classList.add('is-invalid');
+            } else {
+                validateAerial[i].classList.remove('is-invalid');
+                validateAerial[i].classList.add('is-valid');
+            }
         }
-        if (productWeightAerial.value == '' || productWeightAerial.value <= 0) {
-            productWeightAerial.classList.add('is-invalid');
-        } else {
-            productWeightAerial.classList.remove('is-invalid');
-            productWeightAerial.classList.add('is-valid');
-            validate++;
-        }
-        if (productQuantityAerial.value == '' || productQuantityAerial.value <= 0) {
-            productQuantityAerial.classList.add('is-invalid');
-        } else {
-            productQuantityAerial.classList.remove('is-invalid');
-            productQuantityAerial.classList.add('is-valid');
-            validate++;
-        }
-        if (productPriceAerial.value == '' || productPriceAerial.value <= 0) {
-            productPriceAerial.classList.add('is-invalid');
-        } else {
-            productPriceAerial.classList.remove('is-invalid');
-            productPriceAerial.classList.add('is-valid');
-            validate++;
-        }
-        if (validate == 4) {
+
+        if ($('.is-invalid').length == 0) {
             let articulo = {
                 type: 'Aereo',
                 shippingTime: '15 Dias',
-                name: productNameAerial.value,
-                weight: parseFloat(productWeightAerial.value),
-                quantity: parseInt(productQuantityAerial.value),
-                price: parseFloat(productPriceAerial.value),
+                name: productNameAerial.val(),
+                weight: parseFloat(productWeightAerial.val()),
+                quantity: parseInt(productQuantityAerial.val()),
+                price: parseFloat(productPriceAerial.val()),
                 quotation: quote(),
-                uPrice: quote() / parseInt(productQuantityAerial.value)
+                uPrice: quote() / parseInt(productQuantityAerial.val())
             }
             articulos.push(articulo);
-            reset();
-
+            reset()
         }
     }
 
-    if (ship.value == 'maritime') {
-        let validate = 0;
 
-        if (productNameMaritime.value == '') {
-            productNameMaritime.classList.add('is-invalid');
-        } else {
-            productNameMaritime.classList.remove('is-invalid');
-            productNameMaritime.classList.add('is-valid');
-            validate++;
-        }
-        if (productWidthMaritime.value == '' || productWidthMaritime.value <= 0) {
-            productWidthMaritime.classList.add('is-invalid');
-        } else {
-            productWidthMaritime.classList.remove('is-invalid');
-            productWidthMaritime.classList.add('is-valid');
-            validate++;
-        }
-        if (productHeightMaritime.value == '' || productHeightMaritime.value <= 0) {
-            productHeightMaritime.classList.add('is-invalid');
-        } else {
-            productHeightMaritime.classList.remove('is-invalid');
-            productHeightMaritime.classList.add('is-valid');
-            validate++;
-        }
-        if (productLongMaritime.value == '' || productLongMaritime.value <= 0) {
-            productLongMaritime.classList.add('is-invalid');
+    if (ship.val() == 'maritime') {
 
-        } else {
-            productLongMaritime.classList.remove('is-invalid');
-            productLongMaritime.classList.add('is-valid');
-            validate++;
+        for (let i = 0; i < validateMaritime.length; i++) {
+            if (validateMaritime[i].value == '' || validateMaritime[i].value <= 0) {
+                validateMaritime[i].classList.add('is-invalid');
+            } else {
+                validateMaritime[i].classList.remove('is-invalid');
+                validateMaritime[i].classList.add('is-valid');
+            }
         }
-        if (productQuantityMaritime.value == '' || productQuantityMaritime.value <= 0) {
-            productQuantityMaritime.classList.add('is-invalid');
-        } else {
-            productQuantityMaritime.classList.remove('is-invalid');
-            productQuantityMaritime.classList.add('is-valid');
-            validate++;
-        }
-        if (productPriceMaritime.value == '' || productPriceMaritime.value <= 0) {
-            productPriceMaritime.classList.add('is-invalid');
-        } else {
-            productPriceMaritime.classList.remove('is-invalid');
-            productPriceMaritime.classList.add('is-valid');
-            validate++;
-        }
-        if (validate == 6) {
+
+        if ($('.is-invalid').length == 0) {
             let articulo = {
                 type: 'Maritimo',
                 shippingTime: '60 Dias',
-                name: productNameMaritime.value,
-                width: parseFloat(productWidthMaritime.value),
-                height: parseFloat(productHeightMaritime.value),
-                long: parseFloat(productLongMaritime.value),
-                quantity: parseInt(productQuantityMaritime.value),
-                price: parseFloat(productPriceMaritime.value),
+                name: productNameMaritime.val(),
+                width: parseFloat(productWidthMaritime.val()),
+                height: parseFloat(productHeightMaritime.val()),
+                long: parseFloat(productLongMaritime.val()),
+                quantity: parseInt(productQuantityMaritime.val()),
+                price: parseFloat(productPriceMaritime.val()),
                 quotation: quote(),
-                uPrice: quote() / parseInt(productQuantityMaritime.value)
+                uPrice: quote() / parseInt(productQuantityMaritime.val())
             }
             articulos.push(articulo);
             reset();
         }
     }
-    
+
     renderFunction();
-
-
-
-
-
 }
 
 // --------------------------- end handleSubmit FUNCTION ---------------------------
@@ -192,10 +150,11 @@ const handleSubmit = (e) => {
 
 const renderFunction = () => {
 
-        localStorage.setItem('art', JSON.stringify(articulos));
-        table.innerHTML = '';
-        articulos.forEach((art, index) => {
-            return table.innerHTML += `
+
+    localStorage.setItem('art', JSON.stringify(articulos));
+    table.html('');
+    articulos.forEach((art, index) => {
+        return table.append(`
             <thead>
                 <tr class="table-active">
                     <th>${art.name}</th>
@@ -233,8 +192,8 @@ const renderFunction = () => {
 
             </tr>
             </tbody>
-            `
-        })
+            `)
+    })
 }
 
 // --------------------------- end renderFunction ---------------------------
@@ -243,54 +202,27 @@ const renderFunction = () => {
 
 // --------------------------- start other FUNCTIONS ---------------------------
 
+
+
+
 const quote = () => {
-    if (ship.value == 'aerial') {
-        let kg = parseFloat(productWeightAerial.value) * 60;
-        let tax = parseFloat(productPriceAerial.value * 1.04);
+    if (ship.val() == 'aerial') {
+        let kg = parseFloat(productWeightAerial.val()) * 60;
+        let tax = parseFloat(productPriceAerial.val() * 1.04);
         return kg + tax;
     }
-    if (ship.value == 'maritime') {
-        let volume = parseFloat((productWidthMaritime.value * productHeightMaritime.value * productLongMaritime.value) * 3200);
-        let tax = parseFloat(productPriceMaritime.value * 1.04);
+    if (ship.val() == 'maritime') {
+        let volume = parseFloat((productWidthMaritime.val() * productHeightMaritime.val() * productLongMaritime.val()) * 3200);
+        let tax = parseFloat(productPriceMaritime.val() * 1.04);
         return volume + tax;
     }
 }
 
 const reset = () => {
-    productNameAerial.value = '';
-    productWeightAerial.value = '';
-    productQuantityAerial.value = '';
-    productPriceAerial.value = '';
-    productNameMaritime.value = '';
-    productWidthMaritime.value = '';
-    productHeightMaritime.value = '';
-    productLongMaritime.value = '';
-    productQuantityMaritime.value = '';
-    productPriceMaritime.value = '';
 
-    productNameAerial.classList.remove('is-valid');
-    productWeightAerial.classList.remove('is-valid');
-    productQuantityAerial.classList.remove('is-valid');
-    productPriceAerial.classList.remove('is-valid');
+    $('.reset').val('');
+    $('.reset').removeClass('is-valid is-invalid')
 
-    productNameMaritime.classList.remove('is-valid');
-    productHeightMaritime.classList.remove('is-valid');
-    productWidthMaritime.classList.remove('is-valid');
-    productLongMaritime.classList.remove('is-valid');
-    productQuantityMaritime.classList.remove('is-valid');
-    productPriceMaritime.classList.remove('is-valid');
-
-    productNameAerial.classList.remove('is-invalid');
-    productWeightAerial.classList.remove('is-invalid');
-    productQuantityAerial.classList.remove('is-invalid');
-    productPriceAerial.classList.remove('is-invalid');
-
-    productNameMaritime.classList.remove('is-invalid');
-    productHeightMaritime.classList.remove('is-invalid');
-    productWidthMaritime.classList.remove('is-invalid');
-    productLongMaritime.classList.remove('is-invalid');
-    productQuantityMaritime.classList.remove('is-invalid');
-    productPriceMaritime.classList.remove('is-invalid');
 }
 
 const remove = (index) => {
@@ -299,23 +231,67 @@ const remove = (index) => {
 }
 
 const callStorage = () => {
-    if(!localStorage.getItem('art')==''){
+    if (!localStorage.getItem('art') == '') {
         articulos = JSON.parse(localStorage.getItem('art'));
         renderFunction();
-    }else{
-        localStorage.setItem('art','');
+    } else {
+        localStorage.setItem('art', '');
     }
 }
+
+
+const validate = (e) => {
+
+    let input = $(`#${e.target.id}`);
+    let validate = false;
+
+    if (input.attr('type') == 'text') {
+        if (input.val() == '') {
+            input.removeClass('is-valid');
+            input.addClass('is-invalid');
+        } else {
+            input.removeClass('is-invalid');
+            input.addClass('is-valid');
+
+        }
+
+    }
+    if (input.attr('type') == 'number') {
+        if (input.val() <= 0) {
+            input.removeClass('is-valid');
+            input.addClass('is-invalid');
+        } else {
+            input.removeClass('is-invalid');
+            input.addClass('is-valid');
+
+        }
+    }
+
+    if (ship.val() == 'aerial' && $('.is-valid').length == 4) {
+        validate = true;
+    }
+
+
+    if (ship.val() == 'maritime' && $('.is-valid').length == 6) {
+        validate = true;
+    }
+
+    console.log(validate);
+    return validate;
+}
+
+
 
 // --------------------------- end other FUNCTIONS ---------------------------
 
 
 
 // --------------------------- start EVENTS ---------------------------
-
+$('.validateAerial, .validateMaritime').change(validate);
 $(document).ready(callStorage);
-productAddBtn.addEventListener('click', handleSubmit);
-ship.addEventListener('change', shippingType);
+productAddBtn.click(handleSubmit);
+ship.change(shippingType);
+
 
 
 //------------------------ end EVENTS ---------------------------

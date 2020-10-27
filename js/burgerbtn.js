@@ -1,43 +1,35 @@
-        var menuButton = document.getElementById('menuButton');
-        menuButton.addEventListener('click', function (e) {
-            menuButton.classList.toggle('is-active');
-            e.preventDefault();
-        });
+        
+        let menuButton = $('#menuButton');
+        let menuLinks = $('#menu__bar__links');
 
-        window.estado = 0;
 
-        function openNav(estado) {
-          if (estado == 0) {
-            document.getElementById("menu__bar__links").style.transform = "translateY(0)";
-            document.getElementById("menu__bar__links").style.transition = "all .5s";
-            
-    
-            window.estado++;
-          } else if (estado == 1) {
-            document.getElementById("menu__bar__links").style.transform = "translateY(-160px)";
-            document.getElementById("menu__bar__links").style.transition = "all .5s";
-            window.estado--;
+        const mQuery = () => {
+          if($(window).width()>=768){
+            menuLinks.css('transform','translateY(0px)')
+            menuLinks.css('transition','0s')
+
+          }else{
+            menuLinks.css('transform','translateY(-160px)')
+            menuLinks.css('transition','0s')
           }
         }
 
-        function myFunction(x) {
-          if (x.matches) {
-            document.getElementById("menu__bar__links").style.transform = "translateY(0)";
-            document.getElementById("menu__bar__links").style.transition = "transform 0s";
+        const burgenBtn = () => {
+          if(menuButton.hasClass('is-active')){
+            menuLinks.css('transform','translateY(-160px)')
+            menuLinks.css('transition','.3s')
+            menuButton.removeClass('is-active');
+          }else{
+            menuLinks.css('transform','translateY(0px)')
+            menuLinks.css('transition','.3s')
 
-            
-    
-          } else {
-            document.getElementById("menu__bar__links").style.transform = "translateY(-160px)";
-            document.getElementById("menu__bar__links").style.transition = "transform 0s";
-
-            
+            menuButton.addClass('is-active');
           }
         }
-    
-        var x = window.matchMedia("(min-width: 768px)")
-        myFunction(x)
-        x.addListener(myFunction)
+        $(document).ready(mQuery);
+        $(window).resize(mQuery);
+        menuButton.click(burgenBtn);
+        
 
   
 

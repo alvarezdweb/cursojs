@@ -9,7 +9,7 @@ $white: #FFFFFF;
 $white2: #F5F5F5;
 $red: #d4074f;
 $red2: #df2365;
-
+$error: #DC3545;
 
 // end variables
 
@@ -28,8 +28,16 @@ body {
 }
 
 .dNone {
-    display: none !important;
+    display: none;
 }
+
+.phRed::placeholder{
+    color: $error;
+    font-weight: 500;
+}
+
+
+
 
 // ------------------------------------------------------------- End D-NONE
 
@@ -123,6 +131,80 @@ body {
     top: 0;
     z-index: 8999;
 
+    &__burgericon{
+        position: absolute;
+        z-index: 9999;
+        top: 20px;
+        right: 0;
+        height: 2.5em;
+        width: 50%;
+        visibility: visible;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__bar {
+        display: flex;
+        align-items: center;
+        background-color: $white;
+        // box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
+
+        &__logo {
+            z-index: 7999;
+            background-color: $white;
+
+            img {
+                width: 130px;
+                padding: 1.1em 0;
+
+            }
+        }
+
+        &__links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            z-index: 6999;
+            top: 80px;
+            // transform: translateY(-160px);
+            box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
+            background-color: $white;
+
+
+
+
+
+            &__item {
+                padding-top: .8em;
+                color: $black;
+
+                &:hover {
+                    text-decoration: none;
+                    color: $red;
+                }
+
+                &--latest {
+                    padding-bottom: .8em;
+                }
+
+                &--active {
+                    color: $red;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        
+    }
+}
+
+/* CODIGO MENU FUNCIONANDO
+.menu {
+    position: sticky;
+    top: 0;
+    z-index: 8999;
+
     &__burgericon {
         position: absolute;
         z-index: 9999;
@@ -190,7 +272,7 @@ body {
 
     }
 }
-
+*/
 
 
 .content {
@@ -225,6 +307,7 @@ body {
     min-height: 80vh;
     margin-top: 4em;
     margin-bottom: 4em;
+    
     &__login {
         text-align: right;
         padding-bottom: 2em;

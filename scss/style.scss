@@ -147,7 +147,6 @@ body {
         display: flex;
         align-items: center;
         background-color: $white;
-        // box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
 
         &__logo {
             z-index: 7999;
@@ -199,80 +198,28 @@ body {
     }
 }
 
-/* CODIGO MENU FUNCIONANDO
-.menu {
-    position: sticky;
-    top: 0;
-    z-index: 8999;
-
-    &__burgericon {
-        position: absolute;
-        z-index: 9999;
-        top: 20px;
-        right: 0;
-        height: 2.5em;
-        width: 50%;
-        visibility: visible;
+.quotation {
+    
         display: flex;
         justify-content: flex-end;
-    }
-
-    &__bar {
-
-        display: flex;
-        align-items: center;
-        background-color: $white;
-
-
-        &__logo {
-            z-index: 7999;
-            background-color: $white;
-
-            img {
-                width: 130px;
-                padding: 1.1em 0;
-
-            }
-        }
-
-        &__links {
+        padding: 0 3em;
+        
+        p {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            position: absolute;
-            z-index: 6999;
-            top: 80px;
-            transform: translateY(-160px);
-            box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
-            background-color: $white;
-
-
-
-
-
-            &__item {
-                padding-top: .8em;
-                color: $black;
-
-                &:hover {
-                    text-decoration: none;
-                    color: $red;
-                }
-
-                &--latest {
-                    padding-bottom: .8em;
-                }
-
-                &--active {
-                    color: $red;
-                    font-weight: 500;
-                }
+            margin: 1em 0;
+            padding: .3em;
+            font-weight: 500;
+            color: $black;
+            
+            svg { 
+                color: darkgreen;
+                margin: 0 .5em;
             }
         }
-
-    }
+    
+   
 }
-*/
 
 
 .content {

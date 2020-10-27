@@ -134,7 +134,7 @@ body {
 .quotation {
   display: flex;
   justify-content: flex-end;
-  padding: 0 3em; }
+  padding: 0 1.2em; }
   .quotation p {
     display: flex;
     align-items: center;
@@ -274,6 +274,8 @@ body {
         .menu__bar__links__item--latest {
           padding-bottom: 0;
           padding-right: 1em; }
+  .quotation {
+    padding: 0 3em; }
   .calculator {
     padding-top: 2em;
     max-width: 800px; }

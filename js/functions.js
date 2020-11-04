@@ -243,7 +243,6 @@ const validate = (e) => {
         validate = true;
     }
 
-    console.log(validate);
     return validate;
 }
 
